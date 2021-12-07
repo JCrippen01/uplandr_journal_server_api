@@ -8,7 +8,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from uplandrapi.models import Dog
+from  uplandrapi import Dog
 from rest_framework.decorators import action
 
 
@@ -37,7 +37,11 @@ class DogView(ViewSet):
     def create(self, request):
         try:
             Dog.objects.create(
-                name = request.data['name']
+                name = request.data['name'],
+                breed = request.data['breed'],
+                sex = request.data['sex'],
+                age = request.data['age'],
+                description = request.data['description']
             )
             return Response({"Message": "Dog Created"}, status=status.HTTP_201_CREATED)
         except Exception as ex:
@@ -45,7 +49,11 @@ class DogView(ViewSet):
     def update(self, request, pk):
         try:
             dog = Dog.objects.get(pk=pk)
-            dog.name = request.data["name"]
+            dog.name = name
+            dog.breed = breed
+            dog.sex = sex
+            dog.age = age
+            dog.description = description
             dog.save()
             return Response({"Message":"Updated Dog"}, status=status.HTTP_204_NO_CONTENT)
         except Dog.DoesNotExist as ex:
