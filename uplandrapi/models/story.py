@@ -6,4 +6,4 @@ class Story(models.Model):
     entry_date = models.DateField()
     image_url = models.URLField()
     content = models.CharField(max_length=500)
-    tags = models.ManyToManyField("Tag", through="PostTag", related_name="tags")
+    
