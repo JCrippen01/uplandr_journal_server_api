@@ -1,0 +1,36 @@
+[
+    {
+        "model": "uplandrapi.dog",
+        "pk": 1,
+        "fields": {
+            "name": "Jefe",
+            "breed": "Golden Retriver",
+            "sex": "M",
+            "age": 3,
+            "description": "Loves water, retrives verywell, works slow on upland, but has great nose."
+        }
+        
+    },
+    {
+        "model": "uplandrapi.dog",
+        "pk": 2,
+        "fields": {
+            "name": "Kenji",
+            "breed": "Golden Retriver",
+            "sex": "M",
+            "age": 5,
+            "description": "Loves water, retrives well, works slow on upland, nose is not best, quarters very well, tolerates extreme cold."
+        }
+    },
+    {
+        "model": "uplandrapi.dog",
+        "pk": 3,
+        "fields": {
+            "name": "Digby",
+            "breed": "English Pointer",
+            "sex": "M",
+            "age": 2,
+            "description": "HATES water, retrives somewhat, Excellent nose, Excellent Endurance, can tolerate heat."
+        }
+    }
+    ]

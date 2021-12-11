@@ -1,0 +1,32 @@
+[
+    {
+        "model": "uplandrapi.journalentry",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "title": "South Dakota Early Season",
+            "entry_date": "2021-10-24",
+            "duration": "05:22",
+            "species": 1,
+            "party": "Teddy, Jonesie, Bart",
+            "location": "Central South Dakota at some city somewhere",
+            "gear": "16GA Browning A5",
+            "hunt_highlights": "Nice day, hot for the dogs. Shot limit by lunch."
+        }
+    },
+    {
+        "model": "uplandrapi.journalentry",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "title": "Kansas Quail",
+            "entry_date": "2021-11-08",
+            "duration": "3:12",
+            "species": 2,
+            "party": "By Myself",
+            "location": "Kiowa Country Kansas",
+            "gear": "28GA Silver Pidgeon",
+            "hunt_highlights": "Flushed 2 big coveys, wish I could shoot!"
+        }
+    }
+]

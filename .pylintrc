@@ -5,4 +5,4 @@ good-names=i,j,ex,pk
 disable=broad-except, imported-auth-user
 
 [MASTER] 
-disable=C0114, 
+disable=C0114

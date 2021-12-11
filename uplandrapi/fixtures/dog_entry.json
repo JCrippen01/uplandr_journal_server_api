@@ -1,0 +1,19 @@
+[
+    {
+        "model": "uplandrapi.dogentry",
+        "pk": 1,
+        "fields": {
+            "dog": 1,
+            "entry": 1
+        }
+    },
+    
+    {
+        "model": "uplandrapi.dogentry",
+        "pk": 2,
+        "fields": {
+            "dog": 2,
+            "entry": 2
+        }
+    }
+]
