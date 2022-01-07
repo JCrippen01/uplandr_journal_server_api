@@ -1,5 +1,4 @@
 """View module for handling requests about games"""
-# from uplandrapi.models.journal_user import JournalUser
 # from django.core.exceptions import ValidationError
 # from django.contrib.auth import get_user_model
 # from django.db.models import Count, Q
@@ -8,10 +7,10 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from uplandrapi.models import JournalEntry,Dog
+from uplandrapi.models import JournalEntry,Dog,JournalUser
 # from rest_framework.decorators import action
-# from django.contrib.auth.models import User
-# from datetime import datetime, time
+from django.contrib.auth.models import User
+from datetime import datetime, time
 
 
 
@@ -60,6 +59,26 @@ class JournalEntryView(ViewSet):
             return Response({"message": "Updated Post"}, status=status.HTTP_204_NO_CONTENT)
         except Exception as ex:
             return Response({"message": ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+    def updatePartial(self, request, pk):
+        
+        try:
+            entry = JournalEntry.objects.get(pk=pk)
+
+            entry.title = request.data['title']
+            entry.entry_date = entry.entry_date
+            entry.duration = entry.duration
+            entry.party = request.data['party']
+            entry.location = request.data['location']
+            # entry.weather = request.data['weather']
+            # entry.species.set = (request.data['speciesId'])
+            entry.gear = request.data['gear']
+            entry.hunt_highlights=request.data['hunt_highlights']
+            entry.user = entry.user
+            entry.save()
+            return Response({"message": "Updated Post"}, status=status.HTTP_204_NO_CONTENT)
+        except Exception as ex:
+            return Response({"message": ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     # def destroy(self, request, pk=None):
     #     try:
@@ -71,27 +90,27 @@ class JournalEntryView(ViewSet):
     #     except Exception as ex:
     #         return Response({"message": ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    # def create(self, request):
-    #     user = JournalUser.objects.get(user=request.auth.user)
-    #     try:
-    #         entry = JournalEntry.objects.create(
-    #             user=user,
-    #             dog=Dog.objects.get(pk=request.data['dog_id']),
-    #             title=request.data['title'],
-    #             entry_date=datetime.now().strftime("%Y-%m-%d"),
-    #             duration = time(),
-    #             party=request.data['party'],
-    #             location=request.data['location'],
-    #             highlights=request.data['highlights'],
-    #             weather=request.data['weather'],
-    #             gear=request.data['gear'],
-    #         )
-    #         entry.species.set(request.data['speciesIds'])
-    #         serializer = JournalEntrySerializer(
-    #             entry, many=False, context={'request': request})
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #     except Exception as ex:
-    #         return Response({"message": ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    def create(self, request):
+        user = JournalUser.objects.get(user=request.auth.user)
+        try:
+            entry = JournalEntry.objects.create(
+                user=user,
+                # dog=Dog.objects.get(pk=request.data['dog_id']),
+                title=request.data['title'],
+                entry_date=datetime.now().strftime("%Y-%m-%d"),
+                duration = time(),
+                party=request.data['party'],
+                location=request.data['location'],
+                hunt_highlights=request.data['hunt_highlights'],
+                # weather=request.data['weather'],
+                gear=request.data['gear'],
+            )
+            # entry.species.set(request.data['speciesIds'])
+            serializer = JournalEntrySerializer(
+                entry, many=False, context={'request': request})
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        except Exception as ex:
+            return Response({"message": ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 # class DogEntrySerializer(serializers.ModelSerializer):
@@ -101,18 +120,18 @@ class JournalEntryView(ViewSet):
 #         depth = 1
 
 
-# class UserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ('first_name', 'last_name',)
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name',)
 
 
-# class JournalUserSerializer(serializers.ModelSerializer):
-#     user = UserSerializer()
+class JournalUserSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
 
-#     class Meta:
-#         model = JournalUser
-#         fields = ('id', 'user', 'profile_image_url')
+    class Meta:
+        model = JournalUser
+        fields = ('id', 'user', 'profile_image_url')
 
 
 class JournalEntrySerializer(serializers.ModelSerializer):
@@ -122,5 +141,5 @@ class JournalEntrySerializer(serializers.ModelSerializer):
     class Meta:
         model = JournalEntry
         fields = ('id', 'user', 'title', 'entry_date', 'duration', 'party',
-                  'location', 'weather', 'species', 'gear', 'hunt_highlights','dogs')
+                  'location', 'weather', 'gear', 'hunt_highlights','dogs')
         depth = 1

@@ -56,7 +56,6 @@ def register_user(request):
 
     # Now save the extra info in the levelupapi_gamer table
     journal_user = JournalUser.objects.create(
-        bio=request.data['bio'],
         user=new_user
     )
 
