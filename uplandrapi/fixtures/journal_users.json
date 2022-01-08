@@ -4,21 +4,8 @@
         "pk": 1,
         "fields": {
             "user": 1,
-            "bio": "I like the open plains, good horses, and bad whiskey.",
-            "profile_img_url": "https://images.squarespace-cdn.com/content/v1/54919e5ae4b057e73fb9016d/1573241461613-FMNR8EPZKM3Z68DRCHRS/MVIMG_20190821_145418.jpg?format=750w",
-            "created_on": "2021-12-25",
-            "active": true
-        }
-    },
-    {
-        "model": "uplandrapi.journaluser",
-        "pk": 2,
-        "fields": {
-            "user": 2,
-            "bio": "Aint no one gonna tell me 'nuthin 'no-how!",
-            "profile_img_url": "https://cdn.quotesgram.com/img/37/39/345180159-Mom_drinking_beer_and_holding_a_shotgun_dr_heckle_funny_redneck_bad_parenting_pictures.jpg",
-            "created_on": "2021-03-26",
-            "active": true
+            "created_on": "2021-12-25"
         }
     }
+    
 ]
