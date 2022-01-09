@@ -7,7 +7,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from uplandrapi.models import JournalEntry,JournalUser
+from uplandrapi.models import JournalEntry, JournalUser, DogEntry, Dog
 # from rest_framework.decorators import action
 from django.contrib.auth.models import User
 from datetime import datetime, time
@@ -43,8 +43,8 @@ class JournalEntryView(ViewSet):
         try:
             entry = JournalEntry.objects.get(pk=pk)
 
-            # entry.dogs = Dog.objects.get(
-            #     pk=request.data['dog_id'])
+            entry.dogs = Dog.objects.get(
+                pk=request.data['dog_id'])
             entry.title = request.data['title']
             entry.entry_date = entry.entry_date
             entry.duration = entry.duration
@@ -80,15 +80,15 @@ class JournalEntryView(ViewSet):
         except Exception as ex:
             return Response({"message": ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    # def destroy(self, request, pk=None):
-    #     try:
-    #         entry = JournalEntry.objects.get(pk=pk)
-    #         entry.delete()
-    #         return Response({}, status=status.HTTP_204_NO_CONTENT)
-    #     except JournalEntry.DoesNotExist as ex:
-    #         return Response({"Message": "Post does not exist"}, status=status.HTTP_404_NOT_FOUND)
-    #     except Exception as ex:
-    #         return Response({"message": ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    def destroy(self, request, pk=None):
+        try:
+            entry = JournalEntry.objects.get(pk=pk)
+            entry.delete()
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+        except JournalEntry.DoesNotExist as ex:
+            return Response({"Message": "Post does not exist"}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as ex:
+            return Response({"message": ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def create(self, request):
         user = JournalUser.objects.get(user=request.auth.user)
@@ -113,11 +113,11 @@ class JournalEntryView(ViewSet):
             return Response({"message": ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-# class DogEntrySerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = DogEntry
-#         fields = ('id', 'entry', 'dog')
-#         depth = 1
+class DogEntrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DogEntry
+        fields = ('id', 'entry', 'dog')
+        depth = 1
 
 
 class UserSerializer(serializers.ModelSerializer):

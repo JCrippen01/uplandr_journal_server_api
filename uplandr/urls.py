@@ -4,11 +4,13 @@ from django.conf.urls import include
 from django.urls import path
 from uplandrapi.models import JournalUser
 from rest_framework import routers
-from uplandrapi.views import register_user, login_user, JournalEntryView
+from uplandrapi.views import register_user, login_user, JournalEntryView,DogView
 
 
 router=routers.DefaultRouter(trailing_slash=False)
 router.register(r'entrys', JournalEntryView, 'entry')
+router.register(r'dogs', DogView, 'dog')
+
 
 urlpatterns = [
     path('', include(router.urls)),
