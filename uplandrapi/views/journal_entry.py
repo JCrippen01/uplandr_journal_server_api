@@ -95,7 +95,7 @@ class JournalEntryView(ViewSet):
         try:
             entry = JournalEntry.objects.create(
                 user=user,
-                # dog=Dog.objects.get(pk=request.data['dog_id']),
+                dog=Dog.objects.get(pk=request.data['dog_id']),
                 title=request.data['title'],
                 entry_date=datetime.now().strftime("%Y-%m-%d"),
                 duration = time(),
@@ -131,7 +131,7 @@ class JournalUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = JournalUser
-        fields = ('id', 'user', 'profile_image_url')
+        fields = ('id', 'user')
 
 
 class JournalEntrySerializer(serializers.ModelSerializer):
