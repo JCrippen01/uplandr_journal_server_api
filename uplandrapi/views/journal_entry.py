@@ -60,23 +60,13 @@ class JournalEntryView(ViewSet):
         except Exception as ex:
             return Response({"message": ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
-    def updatePartial(self, request, pk):
+    def partial_update(self, request, pk):
         
         try:
             entry = JournalEntry.objects.get(pk=pk)
-
-            entry.title = request.data['title']
-            entry.entry_date = entry.entry_date
-            entry.duration = entry.duration
-            entry.party = request.data['party']
-            entry.location = request.data['location']
-            # entry.weather = request.data['weather']
-            # entry.species.set = (request.data['speciesId'])
-            entry.gear = request.data['gear']
-            entry.hunt_highlights=request.data['hunt_highlights']
-            entry.user = entry.user
+            entry.dogs.set(request.data['dogs'])
             entry.save()
-            return Response({"message": "Updated Post"}, status=status.HTTP_204_NO_CONTENT)
+            return Response({"message": "Updated Entry"}, status=status.HTTP_204_NO_CONTENT)
         except Exception as ex:
             return Response({"message": ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
@@ -86,7 +76,7 @@ class JournalEntryView(ViewSet):
             entry.delete()
             return Response({}, status=status.HTTP_204_NO_CONTENT)
         except JournalEntry.DoesNotExist as ex:
-            return Response({"Message": "Post does not exist"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"Message": "Entry does not exist"}, status=status.HTTP_404_NOT_FOUND)
         except Exception as ex:
             return Response({"message": ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 

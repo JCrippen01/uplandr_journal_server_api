@@ -3,6 +3,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from  uplandrapi.models import DogEntry
+from uplandrapi.models.journal_entry import JournalEntry
 
 
 class DogEntryView(ViewSet):
@@ -33,6 +34,9 @@ class DogEntryView(ViewSet):
         serializer = DogEntrySerializer(
             dog_entrys, many=True, context={'request': request})
         return Response(serializer.data)
+    
+    
+
 
 class DogEntrySerializer(serializers.ModelSerializer):
     """JSON serializer for game types
