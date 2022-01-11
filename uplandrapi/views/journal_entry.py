@@ -85,7 +85,7 @@ class JournalEntryView(ViewSet):
         try:
             entry = JournalEntry.objects.create(
                 user=user,
-                dog=Dog.objects.get(pk=request.data['dog_id']),
+                # dog=Dog.objects.get(pk=request.data['dog_id']),
                 title=request.data['title'],
                 entry_date=datetime.now().strftime("%Y-%m-%d"),
                 duration = time(),
