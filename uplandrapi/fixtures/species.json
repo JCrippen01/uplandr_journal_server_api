@@ -1,0 +1,23 @@
+[
+{
+    "model": "uplandrapi.species",
+    "pk": 1,
+    "fields": {
+        "name": "Pheasant"
+    }
+},
+{
+    "model": "uplandrapi.species",
+    "pk": 2,
+    "fields": {
+        "name": "Quail"
+    }
+},
+{
+    "model": "uplandrapi.species",
+    "pk": 3,
+    "fields": {
+        "name": "Chukkar"
+    }
+}
+]

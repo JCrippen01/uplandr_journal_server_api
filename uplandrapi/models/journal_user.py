@@ -3,9 +3,7 @@ from django.contrib.auth.models import User
 
 
 class JournalUser(models.Model):
-    "JournalUsers model"
-    bio = models.TextField(max_length=200)
-    profile_img_url = models.ImageField()
+    """JournalUsers model"""
     created_on = models.DateField(auto_now=True)
-    active = models.BooleanField()
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # active = models.BooleanField()
+    user = models.OneToOneField(User, null =True, on_delete=models.CASCADE)

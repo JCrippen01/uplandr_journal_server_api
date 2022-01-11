@@ -5,6 +5,14 @@
 ],
 
     "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true  
-    
+    "python.linting.enabled": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "uplandrDB",
+            "database": "db.sqlite3"
+        }
+    ],
+    "python.formatting.provider": "autopep8",
 }

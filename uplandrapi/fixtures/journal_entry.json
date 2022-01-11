@@ -1,0 +1,17 @@
+[
+    {
+        "model": "uplandrapi.journalentry",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "title": "South Dakota Early Season",
+            "entry_date": "2021-10-24",
+            "duration": "05:22",
+            "party": "Teddy, Jonesie, Bart",
+            "location": "Central South Dakota at some city somewhere",
+            "gear": "16GA Browning A5",
+            "hunt_highlights": "Nice day, hot for the dogs. Shot limit by lunch."
+        }
+    }
+    
+]

@@ -1,0 +1,11 @@
+[
+    {
+        "model": "uplandrapi.journaluser",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "created_on": "2021-12-25"
+        }
+    }
+    
+]
